@@ -2,14 +2,17 @@
 
 Name:           libnetfilter_log
 Version:        1.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Netfilter logging userspace library
 License:        GPLv2
 URL:            https://www.netfilter.org/projects/libnetfilter_log/index.html
 Source0:        https://www.netfilter.org/projects/libnetfilter_log/files/libnetfilter_log-1.0.2.tar.bz2
 #Patch0:		libnetfilter_log-sysheader.patch
 
+Requires:       libmnl
+
 BuildRequires:  gcc
+BuildRequires:  libmnl-devel
 BuildRequires:  libnfnetlink-devel >= %{libnfnetlink}, pkgconfig, kernel-headers
 BuildRequires: make
 
@@ -66,6 +69,9 @@ find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
 %{_libdir}/pkgconfig/libnetfilter_log_libipulog.pc
 
 %changelog
+* Fri Jan 21 2022 Aaron G. Mizrachi P. <aaron@unmanarc.com> - 1.0.2-2
+- requires libmnl
+
 * Fri Jan 21 2022 Aaron G. Mizrachi P. <aaron@unmanarc.com> - 1.0.2-1
 - upstream release
 
